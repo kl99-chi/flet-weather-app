@@ -181,4 +181,8 @@ def main(page: ft.Page):
 
 
 if __name__ == "__main__":
-    ft.run(main)
+    port = os.getenv("PORT")
+    if port:  # Render sets PORT, so run as a website
+        ft.run(main, view=ft.AppView.WEB_BROWSER, host="0.0.0.0", port=int(port))
+    else:     # on your laptop, open the desktop window as before
+        ft.run(main)
